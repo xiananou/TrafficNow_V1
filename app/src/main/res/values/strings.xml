@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TrafficNow</string>
+
+    <!-- API Keys - 在生产环境中应该从环境变量或加密存储中读取 -->
+    <string name="google_maps_api_key">AIzaSyDn7hIph289VPpjEC7DOEY-picJJR6I1Qs</string>
+    <string name="transit_api_key">xUAFiEJw8XJIFftacPwmd0GELBwhfBB9</string>
+
+    <!-- UI strings -->
     <string name="search_hint">Enter destination</string>
+    <string name="go_button">Go</string>
     <string name="route_options">Route Options</string>
     <string name="transit_arrivals">Transit Arrivals</string>
-    <string name="current_location">Current Location</string>
-    <string name="destination">Destination</string>
-    <string name="traffic_enabled">Traffic layer enabled</string>
-    <string name="traffic_disabled">Traffic layer disabled</string>
-    <string name="refreshing_data">Refreshing data...</string>
+    <string name="toggle_traffic">Toggle traffic layer</string>
+    <string name="refresh_data">Refresh data</string>
+    <string name="current_location">Go to current location</string>
+
+    <!-- Content descriptions for accessibility -->
+    <string name="toggle_traffic_desc">Toggle traffic layer</string>
+    <string name="refresh_desc">Refresh data</string>
+    <string name="current_location_desc">Go to current location</string>
+
+    <!-- Error messages -->
     <string name="location_permission_required">Location permission required</string>
     <string name="no_routes_found">No routes found</string>
-    <string name="search_failed">Search failed</string>
+    <string name="search_failed">Search failed: %1$s</string>
     <string name="transit_data_unavailable">Transit data unavailable</string>
+    <string name="network_unavailable">Network connection unavailable</string>
+    <string name="location_not_found">Location not found: %1$s</string>
+    <string name="please_enter_destination">Please enter a destination</string>
+    <string name="searching_for">Searching for %1$s...</string>
+    <string name="found_routes">Found %1$d route(s)</string>
+
+    <!-- Motion detection -->
     <string name="walking_detected">Walking detected</string>
     <string name="driving_detected">Driving detected</string>
+
+    <!-- Traffic layer -->
+    <string name="traffic_layer_enabled">Traffic layer enabled</string>
+    <string name="traffic_layer_disabled">Traffic layer disabled</string>
+
+    <!-- Data refresh -->
+    <string name="refreshing_data">Refreshing data...</string>
+
+    <!-- Route selection -->
+    <string name="selected_route">Selected %1$s route</string>
+    <string name="transit_info_for">Transit info for %1$s</string>
 </resources>

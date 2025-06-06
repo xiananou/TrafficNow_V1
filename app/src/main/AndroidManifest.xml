@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <!-- 添加网络状态变化监听权限 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <!-- Hardware features -->
     <uses-feature
         android:name="android.hardware.location"
@@ -21,6 +24,14 @@
         android:name="android.hardware.sensor.accelerometer"
         android:required="false" />
 
+    <!-- 网络连接要求 -->
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,12 +41,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TrafficNow"
+        android:usesCleartextTraffic="false"
         tools:targetApi="31">
 
-        <!-- Google Maps API Key -->
+        <!-- Google Maps API Key - 从strings.xml读取 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDn7hIph289VPpjEC7DOEY-picJJR6I1Qs" />
+            android:value="@string/google_maps_api_key" />
 
         <!-- Google Maps version -->
         <meta-data

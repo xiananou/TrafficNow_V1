@@ -1,4 +1,3 @@
-// app/src/main/java/com/example/trafficnow/models/Route.kt
 package com.example.trafficnow.models
 
 data class Route(

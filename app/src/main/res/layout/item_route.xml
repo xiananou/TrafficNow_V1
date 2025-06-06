@@ -4,77 +4,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/elevation_small"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/margin_medium"
+        android:gravity="center_vertical">
 
-        <!-- Route Icon -->
-        <ImageView
-            android:id="@+id/routeIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_directions_car"
-            android:layout_gravity="center_vertical" />
+        <!-- 路线图标 - 根据类型动态设置 -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/margin_medium">
 
-        <!-- Route Details -->
+            <ImageView
+                android:id="@+id/routeIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_directions_car" />
+
+            <!-- 路线类型背景圆圈 -->
+            <View
+                android:id="@+id/routeIconBackground"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_background"
+                android:backgroundTint="@color/primary_color"
+                android:alpha="0.1" />
+
+        </FrameLayout>
+
+        <!-- 路线详情 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <!-- 第一行：模式和持续时间 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/routeMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Driving"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:background="@drawable/circle_background"
+                    android:backgroundTint="@color/gray_medium" />
 
                 <TextView
                     android:id="@+id/routeDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:text="25 min"
                     android:textColor="@color/primary_color"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_medium" />
 
                 <TextView
                     android:id="@+id/routeDistance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/margin_small"
                     android:text="12.5 km"
-                    android:textColor="@color/gray_dark" />
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_normal" />
 
             </LinearLayout>
 
+            <!-- 第二行：路线描述 -->
             <TextView
                 android:id="@+id/routeDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Fast route via highway"
-                android:textSize="14sp"
-                android:textColor="@color/gray_medium" />
+                android:textSize="@dimen/text_size_normal"
+                android:textColor="@color/text_secondary"
+                android:maxLines="2"
+                android:ellipsize="end" />
 
         </LinearLayout>
+
+        <!-- 箭头指示器 -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:src="@drawable/ic_arrow_forward"
+            android:alpha="0.6"
+            app:tint="@color/gray_medium" />
 
     </LinearLayout>
 

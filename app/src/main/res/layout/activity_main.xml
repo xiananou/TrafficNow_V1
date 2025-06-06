@@ -7,35 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Search bar at the top -->
-    <LinearLayout
+    <!-- 搜索栏 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@android:color/white"
-        android:elevation="4dp">
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:layout_gravity="top">
 
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            android:hint="Enter destination"
-            android:background="@android:drawable/edit_text"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:drawableStart="@android:drawable/ic_menu_search"
-            android:drawablePadding="8dp" />
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:text="Go" />
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/search_hint"
+                android:background="@android:color/transparent"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"
+                android:textSize="14sp"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:text="Go"
+                android:textSize="14sp"
+                android:backgroundTint="@color/primary_color"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <!-- Map View -->
     <com.google.android.gms.maps.MapView
@@ -44,35 +62,39 @@
         android:layout_height="match_parent"
         android:layout_marginTop="80dp" />
 
-    <!-- Right side button container - 使用LinearLayout避免重叠 -->
+    <!-- 右侧按钮容器 -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/toggleTrafficButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="16dp"
             android:src="@android:drawable/ic_dialog_info"
-            android:backgroundTint="#FF9800"
-            android:contentDescription="Toggle traffic layer" />
+            android:backgroundTint="@color/accent_color"
+            android:contentDescription="Toggle traffic layer"
+            app:tint="@color/white"
+            app:fabSize="normal" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/refreshButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_rotate"
-            android:backgroundTint="#4CAF50"
-            android:contentDescription="Refresh data" />
+            android:backgroundTint="@color/secondary_color"
+            android:contentDescription="Refresh data"
+            app:tint="@color/white"
+            app:fabSize="normal" />
 
     </LinearLayout>
 
-    <!-- Bottom right location button - 单独放置 -->
+    <!-- 当前位置按钮 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/currentLocationButton"
         android:layout_width="wrap_content"
@@ -80,57 +102,79 @@
         android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
         android:src="@android:drawable/ic_menu_mylocation"
-        android:backgroundTint="#2196F3"
-        android:contentDescription="Go to current location" />
+        android:backgroundTint="@color/primary_color"
+        android:contentDescription="Go to current location"
+        app:tint="@color/white"
+        app:fabSize="normal" />
 
-    <!-- Bottom Sheet -->
+    <!-- Bottom Sheet - 必须是CoordinatorLayout的直接子视图 -->
     <LinearLayout
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:padding="16dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        android:paddingTop="8dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_peekHeight="200dp"
+        app:behavior_hideable="true">
 
-        <!-- Drag Handle -->
+        <!-- 拖拽指示器 -->
         <View
             android:layout_width="40dp"
             android:layout_height="4dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
-            android:background="#E0E0E0" />
+            android:background="@color/gray_medium"
+            android:alpha="0.5" />
 
-        <!-- Route Options Section -->
+        <!-- 路线选项部分 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Route Options"
+            android:text="@string/route_options"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/text_primary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/routeOptionsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+
+        <!-- 分隔线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light"
             android:layout_marginBottom="16dp" />
 
-        <!-- Transit Info Section -->
+        <!-- 公交信息部分 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transit Arrivals"
+            android:text="@string/transit_arrivals"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/text_primary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/transitInfoRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+
+        <!-- 底部额外空间，防止内容被遮挡 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
 
     </LinearLayout>
 
